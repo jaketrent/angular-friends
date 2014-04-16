@@ -56,7 +56,6 @@ We will also create a location search input.
 * Create a second input and searchTerm variable for a friend's location
 * Add the location specific filter
 
-
 ###Step 7: Make the list sortable
 
 * Create two variables in your friend controller, one for the attribute to sort on and another boolean for an ascending vs descending sort

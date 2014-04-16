@@ -20,34 +20,25 @@
 
 <h1>The <strong>facebook</strong> Friend Machine</h1>
 
-<div class="friends">
-
+<div class="friends" ng-controller="FriendController">
 
 <form class="form-inline searchForm" role="form">
   <div class="form-group">
 
-  <input class="form-control" placeholder="Search Anything About Your Friends" >
-  <!-- The stuff below is For step 5....get rid of the one above if you wish-->
-<!--
-    <input class="form-control" placeholder="Search Your Friends' Name" >
-    <input class="form-control" placeholder="Search Your Freinds' Location" >
- -->
-    <select class="input-medium">
-        <option>Name</option>
-        <option># friends</option>
-        <option>City</option>
-        <option>State</option>
-        <option>Country</option>
+    <input class="form-control" placeholder="Search Your Friends' Name" ng-model="search.name">
+    <input class="form-control" placeholder="Search Your Freinds' Location" ng-model="search.current_location">
+    <select ng-model="sortProperty"
+      ng-options="prop.value as prop.text for prop in sortProperties">
     </select>
-    <select class="input-medium">
-        <option value="false">Descending</option>
-        <option value="true">Ascending</option>
+
+    <select class="input-medium" ng-model="sortDirection"
+      ng-options="dir.value as dir.text for dir in sortDirections">
     </select>
   </div>
 </form>
 
-  <ul ng-controller="FriendController">
-    <li class='friend' ng-repeat="friend in friends">
+  <ul>
+    <li class='friend' ng-repeat="friend in friends|filter:search|orderBy:sortProperty:sortDirection">
        <img class="profile-pic" ng-src='{{friend.pic_square}}'>
       <h3>{{friend.name}}</h3>
       <div class="location">
